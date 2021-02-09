@@ -19,7 +19,7 @@ addLayer("cn", {
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(1)
+        return new Decimal(2)
     },
 	upgrades: {
     rows: 1,
