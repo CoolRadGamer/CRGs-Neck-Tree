@@ -15,14 +15,27 @@ addLayer("cn", {
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
+	    if (hasUpgrade('cn', 11)) mult.times("CRG necks")
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
+	upgrades: {
+    rows: # of rows,
+    cols: # of columns,
+    11: {
+	title: "Vampirism"	
+        description: "multiply neck gain by necks :kekw:",
+        cost: new Decimal(10),
+        etc
+    },
+}
     row: 0, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
         {key: "c", description: "crg's neck reset", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true}
+	
+	
 })
