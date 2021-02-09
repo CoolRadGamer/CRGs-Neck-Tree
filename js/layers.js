@@ -25,7 +25,7 @@ addLayer("cn", {
     rows: 1,
     cols:1,
     11: {
-	title: "Vampirism"	
+	title: "Vampirism",	
         description: "multiply neck gain by necks :kekw:",
         cost: new Decimal(10),
         etc
