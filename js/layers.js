@@ -28,7 +28,7 @@ addLayer("cn", {
 	title: "Vampirism",	
         description: "multiply neck gain by necks :kekw:",
         cost: new Decimal(10),
-        etc
+       
     },
 }
     row: 0, // Row the layer is in on the tree (0 is the first row)
