@@ -22,8 +22,8 @@ addLayer("cn", {
         return new Decimal(1)
     },
 	upgrades: {
-    rows: # of rows,
-    cols: # of columns,
+    rows: 1,
+    cols:1,
     11: {
 	title: "Vampirism"	
         description: "multiply neck gain by necks :kekw:",
