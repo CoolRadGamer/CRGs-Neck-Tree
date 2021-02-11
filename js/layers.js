@@ -19,7 +19,7 @@ addLayer("cn", {
 	    if (hasUpgrade('cn', 12)) mult = mult.plus(100).pow(player.cn.points.pow(0.1))
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(1)
+        return new Decimal(2)
     },
 	upgrades: {
     rows: 1,
