@@ -16,8 +16,7 @@ addLayer("cn", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
 	    if (hasUpgrade('cn', 11)) mult = mult.times(player.cn.points)
-	    if (hasUpgrade('cn', 12)) mult = mult.pow(log10(player.cn.points))
-        return mult
+	    if (hasUpgrade('cn', 12)) mult = mult.pow(player.cn.points.log(10))
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
