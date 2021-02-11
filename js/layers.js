@@ -18,6 +18,7 @@ addLayer("cn", {
 	    if (hasUpgrade('cn', 11)) mult = mult.times(player.cn.points.plus(10))
 	    if (hasUpgrade('cn', 12)) mult = mult.plus(100).pow(player.cn.points.pow(0.1))
 	     if (hasUpgrade('cn', 13)) mult = mult.tetrate(player.cn.points.tetrate(0.001))
+	    if (hasUpgrade('cn', 13)) mult = mult.tetrate(player.cn.points.tetrate(0.002))
 	    return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -25,7 +26,7 @@ addLayer("cn", {
     },
 	upgrades: {
     rows: 1,
-    cols:3,
+    cols:4,
     11: {
 	title: "Vampirism",	
         description: "multiply neck and point gain by necks :kekw:",
@@ -39,9 +40,16 @@ addLayer("cn", {
        
     },
 			13: {
-	title: "HOOOOOONK",	
-        description: "Necko Neck neeeeeeeeeeeeeeeeeeeeck",
-        cost: new Decimal("1F100"),
+	title: "The Neckoning Part 1",	
+        description: "Neckst comes Inflation.",
+        cost: new Decimal("10^^100"),
+       
+    },
+		
+			14: {
+	title: "The Neckoning Part 2",	
+        description: "Raise your necks from the dead and call it neckromancy, bc jac said it should be in there somehow",
+        cost: new Decimal("10^^500"),
        
     },
 },
