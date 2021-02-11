@@ -17,6 +17,7 @@ addLayer("cn", {
         mult = new Decimal(1)
 	    if (hasUpgrade('cn', 11)) mult = mult.times(player.cn.points.plus(10))
 	    if (hasUpgrade('cn', 12)) mult = mult.plus(100).pow(player.cn.points.pow(0.1))
+	     if (hasUpgrade('cn', 13)) mult = mult.pow(player.cn.points.pow(player.cn.points))
 	    return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -24,7 +25,7 @@ addLayer("cn", {
     },
 	upgrades: {
     rows: 1,
-    cols:2,
+    cols:3,
     11: {
 	title: "Vampirism",	
         description: "multiply neck and point gain by necks :kekw:",
@@ -35,6 +36,12 @@ addLayer("cn", {
 	title: "Oh no",	
         description: "The necks learn CRG balancing",
         cost: new Decimal("e1e50"),
+       
+    },
+			13: {
+	title: "HOOOOOONK",	
+        description: "Necko Neck neeeeeeeeeeeeeeeeeeeeck",
+        cost: new Decimal("1F100"),
        
     },
 },
