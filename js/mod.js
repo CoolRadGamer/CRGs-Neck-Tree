@@ -1,11 +1,11 @@
 let modInfo = {
-	name: "The CRG's neck tree Tree",
+	name: "CRG's Neck Tree",
 	id: "mymod",
 	author: "nobody",
 	pointsName: "points",
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (10), // Used for hard resets and new players
+	initialStartPoints: new Decimal (6969), // Used for hard resets and new players
 	
 	offlineLimit: 1,  // In hours
 }
@@ -56,7 +56,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("ee50"))
+	return player.points.gte(new Decimal("eee50"))
 }
 
 
