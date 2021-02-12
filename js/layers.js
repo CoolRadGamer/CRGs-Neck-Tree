@@ -54,6 +54,9 @@ addLayer("cn", {
        
     },
 },
+	passiveGeneration() {
+	if(player.b.points.gte(3) return(player.b.points)
+	},
     row: 0, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
         {key: "c", description: "crg's neck reset", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
