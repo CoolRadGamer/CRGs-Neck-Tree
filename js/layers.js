@@ -90,14 +90,31 @@ addLayer("b", {
     },
 	upgrades: {
     rows: 1,
-    cols:1,
+    cols:4,
     11: {
 	title: "Information",	
         description: "Booxters booxt the Neckoning base",
-        cost: new Decimal(1),
+        cost: new Decimal(0),
        
     },
-	
+	  12: {
+	title: "Information^2",	
+        description: "Once you get 3 booxters, neck gain gets autoed",
+        cost: new Decimal(0),
+       
+    },
+	 13: {
+	title: "Information^3",	
+        description: "Once you get 10 booxters, everything gets autoed",
+        cost: new Decimal(0),
+       
+    },
+		 14: {
+	title: "Information^4",	
+        description: "Once you get 100 booxters, you will hit BE limit",
+        cost: new Decimal(0),
+       
+    },
 },
 	autoPrestige() {
 	if (player.b.points.gte(10) && player.b.points.lt(100)) return true
