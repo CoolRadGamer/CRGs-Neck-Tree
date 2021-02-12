@@ -96,6 +96,9 @@ addLayer("b", {
     },
 	
 },
+	autoPrestige(): {
+	if (player.b.points.gte(10)) return true
+},
     row: 1, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
         {key: "b", description: "booxter reset", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
