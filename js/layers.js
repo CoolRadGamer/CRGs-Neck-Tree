@@ -111,3 +111,13 @@ addLayer("b", {
 	
 	
 })
+let autoUpgrades = setInterval(function() {
+if (player.b.points.gte(10)) {
+buyUpgrade("cn", 11)
+buyUpgrade("cn", 12)
+buyUpgrade("cn", 13)
+buyUpgrade("cn", 14)
+}
+},
+			       100)
+			       
