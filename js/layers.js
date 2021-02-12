@@ -100,7 +100,8 @@ addLayer("b", {
 	
 },
 	autoPrestige() {
-	if (player.b.points.gte(10)) return true
+	if (player.b.points.gte(10).lt(100)) return true
+	if(player.b.points.gte(100)) return false
 },
     row: 1, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
