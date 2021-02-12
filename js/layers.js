@@ -18,7 +18,7 @@ addLayer("cn", {
 	    if (hasUpgrade('cn', 11)) mult = mult.times(player.cn.points.plus(10))
 	    if (hasUpgrade('cn', 12)) mult = mult.plus(100).pow(player.cn.points.pow(0.1))
 	    if (player.b.points.gte(2)) mult = mult.pow(player.b.points)
-	     if (hasUpgrade('cn', 13)) mult = mult.tetrate(player.cn.points.tetrate(6player.b.points.times(0.01).plus(1)))
+	     if (hasUpgrade('cn', 13)) mult = mult.tetrate(player.cn.points.tetrate(player.b.points.times(0.01).plus(1)))
 	    if (hasUpgrade('cn', 14)) mult = mult.tetrate(player.cn.points.pentate(player.b.points.times(0.02).plus(1))
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
