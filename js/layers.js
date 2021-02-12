@@ -17,8 +17,9 @@ addLayer("cn", {
         mult = new Decimal(1)
 	    if (hasUpgrade('cn', 11)) mult = mult.times(player.cn.points.plus(10))
 	    if (hasUpgrade('cn', 12)) mult = mult.plus(100).pow(player.cn.points.pow(0.1))
+	    if (player.b.points.gte(2)) mult = mult.pow(player.b.points)
 	     if (hasUpgrade('cn', 13)) mult = mult.tetrate(player.cn.points.tetrate(player.b.points.times(0.01)).plus(1))
-	    if (hasUpgrade('cn', 14)) mult = mult.tetrate(player.cn.points.pentate(player.b.points.times(0.02)).plus(1))
+	    if (hasUpgrade('cn', 14)) mult = mult.tetrate(player.cn.points.pentate(player.b.points.times(0.02)).plus(1)
 	    return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -63,7 +64,7 @@ addLayer("cn", {
 })
 addLayer("b", {
     name: "booxters", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: "cn", // This appears on the layer's node. Default is the id with the first letter capitalized
+    symbol: "yb", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
