@@ -19,7 +19,7 @@ addLayer("cn", {
 	    if (hasUpgrade('cn', 12)) mult = mult.plus(100).pow(player.cn.points.pow(0.1))
 	    if (player.b.points.gte(2)) mult = mult.pow(player.b.points)
 	     if (hasUpgrade('cn', 13)) mult = mult.tetrate(player.cn.points.tetrate(player.b.points.times(player.b.points.times(0.01)).plus(1)))
-	    if (hasUpgrade('cn', 14)) mult = mult.tetrate(player.cn.points.pentate(player.b.points.times(player.b.points.times(0.02)).plus(1)))
+	    if (hasUpgrade('b', 14)) mult = mult.tetrate(player.cn.points)
 	    return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -110,9 +110,9 @@ addLayer("b", {
        
     },
 		 14: {
-	title: "Information^4",	
-        description: "Once you get 100 booxters, you will hit BE limit",
-        cost: new Decimal(0),
+	title: "The True Neckoning",	
+        description: "The cn Neckonings Were Fakes, THIS IS THE TRUE NECKONING",
+        cost: new Decimal(100),
        
     },
 },
