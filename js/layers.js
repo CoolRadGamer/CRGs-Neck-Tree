@@ -15,22 +15,18 @@ addLayer("cn", {
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
-	    if (hasUpgrade('cn', 11)) mult = mult.times(player.cn.points.plus(10))
-	    if (hasUpgrade('cn', 12)) mult = mult.plus(100).pow(player.cn.points.pow(0.1))
-	    if (player.b.points.gte(2)) mult = mult.pow(player.b.points)
-	     if (hasUpgrade('cn', 13)) mult = mult.tetrate(player.cn.points.tetrate(player.b.points.times(player.b.points.times(0.01)).plus(1)))
-	    if (hasUpgrade('b', 14)) mult = mult.tetrate(player.cn.points)
+	    if (hasUpgrade('cn', 11)) mult = mult.times(2))
 	    return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(2)
+        return new Decimal(1)
     },
 	upgrades: {
     rows: 1,
     cols:4,
     11: {
 	title: "Vampirism",	
-        description: "multiply neck and point gain by necks :kekw:",
+        description: "doubles neck gain (no more inflations?)",
         cost: new Decimal(10),
        
     },
