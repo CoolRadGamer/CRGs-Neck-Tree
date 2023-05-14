@@ -4,7 +4,7 @@ addLayer("cn", {
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
-		points: new Decimal(1),
+		points: new Decimal(0),
     }},
     color: "#2400ff",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
@@ -15,44 +15,66 @@ addLayer("cn", {
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
-	    if (hasUpgrade('cn', 11)) mult = mult.times(player.cn.points.plus(10))
-	    if (hasUpgrade('cn', 12)) mult = mult.plus(100).pow(player.cn.points.pow(0.1))
-	    if (player.b.points.gte(2)) mult = mult.pow(player.b.points)
-	     if (hasUpgrade('cn', 13)) mult = mult.tetrate(player.cn.points.tetrate(player.b.points.times(player.b.points.times(0.01)).plus(1)))
-	    if (hasUpgrade('b', 14)) mult = mult.tetrate(player.cn.points)
+	    if (hasUpgrade('cn', 11)) mult = mult.times(2)
+	    if (hasUpgrade('cn', 13)) mult = mult.times(player.points.plus(10).log10())
+	    if (hasUpgrade('cn', 14)) mult = mult.times(3)
+	    if (hasUpgrade('cn', 22)) mult = mult.times(player.cn.points.plus(10).log10())
 	    return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(2)
+        return new Decimal(1)
     },
 	upgrades: {
-    rows: 1,
-    cols:4,
+    rows: 3,
+    cols: 4,
     11: {
 	title: "Vampirism",	
-        description: "multiply neck and point gain by necks :kekw:",
-        cost: new Decimal(10),
+        description: "multiplies neck and point gain by two.",
+        cost: new Decimal(2)
        
     },
-		12: {
-	title: "Oh no",	
-        description: "The necks learn CRG balancing",
-        cost: new Decimal("e1e50"),
-       
+    12: {
+	title: "Giraffe DNA",
+	description: "necks are now longer, boosts point gain based on necks",
+	effectDisplay() { return format(upgradeEffect(this.layer, this.id)) + "x" },
+            effect() {
+                return player.cn.points.pow(0.3).plus(1)
+            },
+	cost: new Decimal(12)
     },
-			13: {
-	title: "The Neckoning Part 1",	
-        description: "Neckst comes Inflation.",
-        cost: new Decimal("10^^100"),
-       
+    13: {
+	title: "Adam's apple",
+	description: "now there is a lump in your necks, boosts neck gain based on points",
+	effectDisplay() { return format(upgradeEffect(this.layer, this.id)) + "x" },
+            effect() {
+                return player.points.plus(10).log10()
+            },
+	cost: new Decimal(40)
+    },
+    14: {
+	title: "bad joke",
+        description: "it's CRG's neck, of course this would happen. triple neck gain",
+	cost: new Decimal(69)
+    },
+    21: {
+	title: "Sponsored by Dracula",
+	description: "i vant to succ ur blood. (boosts point gain based on points)",
+	effectDisplay() { return format(upgradeEffect(this.layer, this.id)) + "x" },
+            effect() {
+                return player.points.plus(10).log10().div(2).plus(1).pow(2)
+            },
+	cost: new Decimal(500)
+    },
+    22: {
+	title: "neckodiles",
+	description: "spread the word! they say 'neckneckneckneck' (boost neck gain based on necks)",
+	effectDisplay() { return format(upgradeEffect(this.layer, this.id)) + "x" },
+            effect() {
+                return player.cn.points.plus(10).log10().div(2).plus(2)
+            },
+	cost: new Decimal(20000)
     },
 		
-			14: {
-	title: "The Neckoning Part 2",	
-        description: "Raise your necks from the dead and call it neckromancy, bc jac said it should be in there somehow",
-        cost: new Decimal("10^^500"),
-       
-    },
 },
 	passiveGeneration() {
 	if(player.b.points.gte(3)) return(player.b.points)
@@ -71,15 +93,15 @@ addLayer("b", {
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
-		points: new Decimal(1),
+		points: new Decimal(0),
     }},
     color: "#990026",
-    requires: new Decimal("10^^100"), // Can be a function that takes requirement increases into account
+    requires: new Decimal("1e10"), // Can be a function that takes requirement increases into account
     resource: "booxters", // Name of prestige currency
     baseResource: "CRG necks", // Name of resource prestige is based on
     baseAmount() {return player.cn.points}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
-    exponent: 0.5, // Prestige currency exponent
+    exponent: 01, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
 	   
@@ -93,26 +115,8 @@ addLayer("b", {
     cols:4,
     11: {
 	title: "Information",	
-        description: "Booxters booxt the Neckoning base",
+        description: "this is coming soon (not really)",
         cost: new Decimal(0),
-       
-    },
-	  12: {
-	title: "Information^2",	
-        description: "Once you get 3 booxters, neck gain gets autoed",
-        cost: new Decimal(0),
-       
-    },
-	 13: {
-	title: "Information^3",	
-        description: "Once you get 10 booxters, everything gets autoed",
-        cost: new Decimal(0),
-       
-    },
-		 14: {
-	title: "The True Neckoning",	
-        description: "The cn Neckonings Were Fakes, THIS IS THE TRUE NECKONING",
-        cost: new Decimal(100),
        
     },
 },
@@ -128,7 +132,7 @@ addLayer("b", {
 	
 	
 })
-let autoUpgrades = setInterval(function() {
+let autoUpgrades1 = setInterval(function() {
 if (player.b.points.gte(10)) {
 buyUpgrade("cn", 11)
 buyUpgrade("cn", 12)

@@ -5,21 +5,21 @@ let modInfo = {
 	pointsName: "points",
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (6969), // Used for hard resets and new players
+	initialStartPoints: new Decimal (10), // Used for hard resets and new players
 	
 	offlineLimit: 1,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
-	name: "Literally nothing",
+	num: "1.0",
+	name: "The Neckst Step",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.0</h3><br>
-		- Added things.<br>
-		- Added stuff.`
+	<h3>v1.0</h3><br>
+		Added upgrades.<br>
+		Balanced up to 1 million CRG necks.`
 
 let winText = `Congratulations! You beat the game I guess, there won't be any more bc I am lazy (and because you hit BE	limit lol), this was done to spite jacorb, pi and yahtzee, btw YA WIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIN!!!!!!!!!!`
 
@@ -42,7 +42,9 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
-	if (hasUpgrade('cn', 11)) gain = gain.times(player.cn.points)
+	if (hasUpgrade('cn', 11)) gain = gain.times(2)
+	if (hasUpgrade('cn', 12)) gain = gain.times(player.cn.points.pow(0.3).plus(1))
+	if (hasUpgrade('cn', 21)) gain = gain.times(player.points.plus(10).log10().div(2).plus(1)).pow(2)
 	return gain
 }
 
