@@ -1,3 +1,4 @@
+
 addLayer("cn", {
     name: "crg's neck", // This is optional, only used in a few places, If absent it just uses the layer id.
     symbol: "cn", // This appears on the layer's node. Default is the id with the first letter capitalized
@@ -5,6 +6,7 @@ addLayer("cn", {
     startData() { return {
         unlocked: true,
 		points: new Decimal(0),
+	        clickyclicks: new Decimal(0)
     }},
     color: "#2400ff",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
@@ -63,7 +65,7 @@ addLayer("cn", {
             effect() {
                 return player.points.plus(10).log10().div(2).plus(1).pow(2)
             },
-	cost: new Decimal(500)
+	cost: new Decimal(200)
     },
     22: {
 	title: "neckodiles",
@@ -72,20 +74,52 @@ addLayer("cn", {
             effect() {
                 return player.cn.points.plus(10).log10().div(2).plus(2)
             },
-	cost: new Decimal(1000)
+	cost: new Decimal(750)
     },
 		
 },
+    buyables: {
+    11: {
+        title: "Neck Enhancers",
+        cost(x=getBuyableAmount(this.layer, this.id)) { return Decimal.pow(3, x).mul(2000) },
+        effect(x=getBuyableAmount(this.layer, this.id)) { return Decimal.pow(1.5, x) },
+        display() { return "Multiplies point gain by 1.5x per buyable.<br>Currently: "+format(this.effect())+"x<br>Cost: "+(this.cost())+" crg necks"},
+        canAfford() { return player[this.layer].points.gte(this.cost()) },
+        buy() {
+            player[this.layer].points = player[this.layer].points.sub(this.cost())
+            setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+        },
+        unlocked() { if (hasUpgrade('cn', 22)) return true}
+    },
+    },
 	passiveGeneration() {
 	if(player.b.points.gte(3)) return(player.b.points)
 	},
+    clickables: {
+    11: {
+        display() {return "clicky button!<br>" + format(player[this.layer].clickyclicks)},
+	canClick() {return true},
+        onClick() {player[this.layer].clickyclicks = player[this.layer].clickyclicks.plus(1)},
+    }
+    
+},
     row: 0, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
         {key: "c", description: "crg's neck reset", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return true}
-	
-	
+    layerShown(){return true},
+    
+
+   tabFormat: [
+"main-display",
+"blank",
+"prestige-button",
+"blank",
+["clickable", 11],
+"blank",
+"upgrades",
+["buyable", 11]
+]
 })
 addLayer("b", {
     name: "booxters", // This is optional, only used in a few places, If absent it just uses the layer id.
