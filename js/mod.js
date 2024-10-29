@@ -12,16 +12,18 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "1.0",
-	name: "The Neckst Step",
+	num: "1.1",
+	name: "Neck-romancy",
 }
 
-let changelog = `<h1>Changelog:</h1><br>
+let changelog = `<h1>Changelog:</h1><br><br>
+	<h3>v1.1 idk</h3><br>
+	Implemented booxters and milestones, "balanced" up to 20 booxters<br>I would do more but I'm tired of using tmt<br><br>
 	<h3>v1.0</h3><br>
 		Added upgrades.<br>
 		Balanced up to 1 million CRG necks.`
 
-let winText = `Congratulations! You beat the game I guess, there won't be any more bc I am lazy (and because you hit BE	limit lol), this was done to spite jacorb, pi and yahtzee, btw YA WIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIN!!!!!!!!!!`
+let winText = `Congratulations! You beat the game I guess, there won't be any more bc I am lazy.`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
@@ -46,6 +48,7 @@ function getPointGen() {
 	if (hasUpgrade('cn', 12)) gain = gain.times(player.cn.points.pow(0.3).plus(1))
 	if (hasUpgrade('cn', 21)) gain = gain.times(player.points.plus(10).log10().div(2).plus(1).pow(2))
 	gain = gain.times(Decimal.pow(1.5, getBuyableAmount('cn', 11)))
+	gain = gain.times(Decimal.pow(2, player.b.points))
 	return gain
 }
 
@@ -59,7 +62,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("10^^1e300"))
+	return player.b.points.gte(new Decimal("20"))
 }
 
 
